@@ -1,0 +1,16 @@
+<app-header-component title="contacts" icon="fas fa-user" description="company employees details">
+</app-header-component>
+<div class="form-group pl-5 pr-5">
+  <input #userid type="number" class="form-control form-control-sm " min="1" max="10" />
+  <br />
+  <button class="btn btn-primary btn-block" (click)="submit(userid)">
+    submit
+  </button>
+</div>
+<div *ngIf="contacts as users; else loading">
+  <app-http-table [contacts]="contacts" [headers]="headers">
+  </app-http-table>
+</div>
+<ng-template #loading>
+  loading...
+</ng-template>

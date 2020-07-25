@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-11 center">
+    <table class="table table-bordered mt-3 mr-3" *ngIf="contacts?.length; else noContacts">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Birthday</th>
+          <th>Phones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contact of contacts; index as i">
+          <td>{{i+1}}</td>
+          <td>{{contact.name | titlecase}}</td>
+          <td>{{contact.email | lowercase}}</td>
+          <td>{{contact.birthday | date:'d/M/yyyy'}}</td>
+          <td>
+            <ul *ngIf="contact.phones?.length; else noPhone">
+              <li *ngFor="let phone of contact.phones">{{phone}}</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noContacts>
+    <p><i>No users were found...</i></p>
+  </ng-template>
+
+  <ng-template #noPhone>
+    <p><i>No phone number</i></p>
+  </ng-template>
+</div>
